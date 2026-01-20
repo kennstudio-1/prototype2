@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YNSVISUALS® — Built for attention</title>
+  <meta name="description" content="YNSVISUALS® Built for attention. Where visuals meet growth" />
+
+  <style>
+    :root{
+      --bg:#07080c;
+      --bg2:#0b0c12;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.64);
+      --muted2:rgba(255,255,255,.50);
+      --line:rgba(255,255,255,.12);
+      --panel:rgba(255,255,255,.04);
+      --panel2:rgba(255,255,255,.06);
+      --radius:18px;
+      --radius2:26px;
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 680px at 18% -10%, rgba(255,255,255,.09), transparent 58%),
+        radial-gradient(900px 600px at 92% 10%, rgba(255,255,255,.07), transparent 58%),
+        radial-gradient(800px 700px at 50% 110%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 55%, var(--bg) 100%);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .app{
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      min-height:100vh;
+    }
+
+    .side{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:18px;
+      border-right:1px solid rgba(255,255,255,.08);
+      background: rgba(7,8,12,.55);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand{
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .brand::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(620px 260px at 25% 10%, rgba(255,255,255,.10), transparent 60%);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    .logoRow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      position:relative;
+      z-index:2;
+    }
+
+    .logoBadge{
+      width:60px;
+      height:60px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(60px 60px at 30% 25%, rgba(255,255,255,.18), rgba(255,255,255,.06)),
+        rgba(255,255,255,.04);
+      box-shadow: 0 14px 40px rgba(0,0,0,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .logoBadge img{
+      display:block;
+      width:auto;
+      height:auto;
+      max-width: 92%;
+      max-height: 92%;
+      object-fit: contain;
+      image-rendering: auto;
+      transform: translateZ(0);
+    }
+
+    .brandTitle{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+
+    .brandTitle b{
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .brandTitle span{
+      margin-top:3px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .motto{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.80);
+      font-size: 12px;
+      line-height:1.35;
+      letter-spacing:.02em;
+      position:relative;
+      z-index:2;
+    }
+
+    .nav{
+      margin-top:14px;
+      display:grid;
+      gap:8px;
+      position:relative;
+      z-index:2;
+    }
+
+    .nav a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .nav a:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav small{
+      color: rgba(255,255,255,.45);
+      font-size: 11px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+    }
+
+    .sideBottom{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius2);
+      padding:14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.55;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn{
+      width:100%;
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
+      color: rgba(255,255,255,.92);
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.07));
+    }
+
+    .main{
+      padding:22px 22px 70px;
+      max-width: var(--max);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .topbar h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+
+    .topbar p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height:1.6;
+      max-width: 76ch;
+    }
+
+    .panel{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 16px 60px rgba(0,0,0,.35);
+      overflow:hidden;
+      margin-top:14px;
+    }
+
+    .panelHead{
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+
+    .panelHead b{
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.84);
+    }
+
+    .panelHead span{
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    .panelBody{
+      padding:18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:16px;
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      right:-150px;
+      top:-170px;
+      background: radial-gradient(circle, rgba(255,255,255,.10), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.16);
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:-.01em;
+    }
+
+    .card p{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color: rgba(255,255,255,.70);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .chip{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.74);
+      font-size: 13px;
+      transition:.2s ease;
+    }
+
+    .chip:hover{
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .contactRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .contactRow p{
+      margin:6px 0 0;
+      color: var(--muted);
+      line-height:1.6;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .actionBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+
+    .actionBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+    }
+
+    .actionBtn.primary{
+      border-color: rgba(255,255,255,.22);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
+    }
+
+    footer{
+      margin-top:16px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      padding: 10px 2px;
+    }
+
+    @media (max-width: 980px){
+      .app{ grid-template-columns: 1fr; }
+      .side{
+        position:relative;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,.08);
+      }
+      .sideBottom{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        margin-top:12px;
+      }
+      .nav{
+        display:flex;
+        gap:10px;
+        overflow:auto;
+        padding-bottom:2px;
+        scroll-snap-type: x mandatory;
+      }
+      .nav a{
+        min-width: 180px;
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+      }
+      .main{ padding:18px 18px 60px; }
+      .grid{ grid-template-columns: 1fr; }
+      .logoBadge{ width:56px; height:56px; }
+    }
+
+    @media (max-width: 420px){
+      .nav a{ min-width: 160px; }
+      .topbar h1{ font-size: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="logoRow">
+          <div class="logoBadge">
+            <img src="logo.png" alt="YNSVISUALS Logo" />
+          </div>
+          <div class="brandTitle">
+            <b>YNSVISUALS®</b>
+            <span>Built for attention.</span>
+          </div>
+        </div>
+
+        <div class="motto">YNSVISUALS® Built for attention. Where visuals meet growth</div>
+
+        <nav class="nav" aria-label="Navigation">
+          <a href="#services"><span>Services</span><small>01</small></a>
+          <a href="#editing"><span>Video Editing</span><small>02</small></a>
+          <a href="#social"><span>Social Media</span><small>03</small></a>
+          <a href="#creative"><span>Creative Direction</span><small>04</small></a>
+          <a href="#tools"><span>Tools</span><small>05</small></a>
+          <a href="#contact"><span>Kontakt</span><small>06</small></a>
+        </nav>
+      </div>
+
+      <div class="sideBottom">
+        Content-first, performance-driven.<br/>
+        Platform-ready Formate • Fast Turnaround
+        <button class="btn" type="button" onclick="openContact()">Kontakt aufnehmen</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Visuelle Inhalte, die Wachstum bringen.</h1>
+          <p>
+            Hochwertige Visuals & Video-Content für Marken, Creator und Unternehmen —
+            modern, clean und performance-orientiert. Optimiert für Plattformen. Entwickelt für Aufmerksamkeit.
+          </p>
+        </div>
+      </div>
+
+      <section id="services" class="panel">
+        <div class="panelHead">
+          <b>Services</b>
+          <span>Alles, was der Kunde braucht — klar strukturiert</span>
+        </div>
+        <div class="panelBody">
+          <div class="grid">
+            <div class="card">
+              <h3>Video Production</h3>
+              <p>Commercial, Promo, Brand & Product Videos — clean und cinematic.</p>
+              <ul>
+                <li>Social-first Production</li>
+                <li>High-contrast, luxury-ready Look</li>
+                <li>Platform-optimierte Deliverables</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Short-form Content</h3>
+              <p>Videos, die in den ersten Sekunden packen.</p>
+              <ul>
+                <li>TikTok / Reels / Shorts</li>
+                <li>Hook-Optimierung</li>
+                <li>Watchtime-Optimierung</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Long-form Video</h3>
+              <p>Story, Struktur und saubere Umsetzung für YouTube & Brand.</p>
+              <ul>
+                <li>YouTube Long-form Editing</li>
+                <li>Storytelling Struktur</li>
+                <li>Sound Design & Color</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Digital Assets</h3>
+              <p>Visuelle Assets, die klicken und konvertieren.</p>
+              <ul>
+                <li>Thumbnails</li>
+                <li>Social Media Graphics</li>
+                <li>Ad Creatives / Website Visuals</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="editing" class="panel">
+        <div class="panelHead">
+          <b>Video Editing</b>
+          <span>Plattform-ready, schnell, hochwertig</span>
+        </div>
+        <div class="panelBody">
+          <div class="grid">
+            <div class="card">
+              <h3>Shorts / Reels / TikTok</h3>
+              <ul>
+                <li>Subtitles & Captions</li>
+                <li>Transitions & Motion Graphics</li>
+                <li>Trend- & Viral-Style Edits</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Color & Sound</h3>
+              <ul>
+                <li>Color Grading</li>
+                <li>Sound Design</li>
+                <li>High-contrast cinematic Look</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="social" class="panel">
+        <div class="panelHead">
+          <b>Social Media</b>
+          <span>Content Strategy + Plattform-Optimierung</span>
+        </div>
+        <div class="panelBody">
+          <div class="grid">
+            <div class="card">
+              <h3>Growth Content</h3>
+              <ul>
+                <li>Platform Optimization</li>
+                <li>Hook & Watch-time Optimization</li>
+                <li>Trend-based Videos</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Content Strategy</h3>
+              <ul>
+                <li>Content Ideen & Struktur</li>
+                <li>Posting-Logik & Formate</li>
+                <li>Performance-driven Umsetzung</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="creative" class="panel">
+        <div class="panelHead">
+          <b>Creative Direction</b>
+          <span>Ideen → Konzepte → Shotlists</span>
+        </div>
+        <div class="panelBody">
+          <div class="grid">
+            <div class="card">
+              <h3>Konzepte & Scripts</h3>
+              <ul>
+                <li>Video Concepts</li>
+                <li>Script Ideas</li>
+                <li>Storytelling Structure</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Brand Alignment</h3>
+              <ul>
+                <li>Visual Identity Alignment</li>
+                <li>Branding Direction</li>
+                <li>Shot Lists</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools" class="panel">
+        <div class="panelHead">
+          <b>Tools</b>
+          <span>Professionelles Setup</span>
+        </div>
+        <div class="panelBody">
+          <div class="chips">
+            <div class="chip">Adobe Premiere Pro</div>
+            <div class="chip">After Effects</div>
+            <div class="chip">CapCut</div>
+            <div class="chip">Photoshop</div>
+            <div class="chip">Lightroom</div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="chips">
+            <div class="chip">Personal Brands</div>
+            <div class="chip">Businesses</div>
+            <div class="chip">Startups</div>
+            <div class="chip">Creators</div>
+            <div class="chip">Influencers</div>
+            <div class="chip">Local Businesses</div>
+            <div class="chip">Online Brands</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="panel">
+        <div class="panelHead">
+          <b>Kontakt</b>
+          <span>Kurze Nachricht reicht</span>
+        </div>
+        <div class="panelBody">
+          <div class="contactRow">
+            <div>
+              <div style="font-size:18px; letter-spacing:-.01em;">Bereit, Aufmerksamkeit in Wachstum zu verwandeln?</div>
+              <p>Schreib kurz Plattform, Ziel und Stil — wir melden uns schnell zurück.</p>
+            </div>
+            <div class="actions">
+              <button class="actionBtn primary" type="button" onclick="openContact()">Kontakt aufnehmen</button>
+              <a class="actionBtn" href="#services">Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>© <span id="year"></span> YNSVISUALS®</footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function openContact(){
+      alert(
+        "Kontakt (Prototyp)\n\n" +
+        "E-Mail: hello@ynsvisuals.com\n" +
+        "Instagram: @ynsvisuals\n\n" +
+        "(Заменишь на реальные контакты клиента)"
+      );
+    }
+  </script>
+</body>
+</html>
